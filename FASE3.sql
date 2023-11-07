@@ -72,6 +72,21 @@ ORDER BY
 --7. Muestra para cada carrera el caballo más joven que ha participado en la misma.
 
 --8. Muestra el último caballo que ganó una carrera de cada uno de los propietarios.
+SELECT
+    p.dni,
+    p.nombre AS NombrePropietario,
+    MAX(cp.fechaHora) AS UltimaCarreraGanada,
+    c.codigoCaballo AS UltimoCaballoGanador
+FROM
+    propietarios p
+JOIN caballos c ON p.dni = c.dniPropietario
+JOIN participaciones pa ON c.codigoCaballo = pa.codigoCaballo
+JOIN carrerasProfesionales cp ON pa.codigoCarrera = cp.codigoCarrera
+WHERE
+    pa.posicionFinal = 1
+GROUP BY
+    p.dni, p.nombre, c.codigoCaballo;
+
 
 --9. Muestra los propietarios que nunca han tenido uno de sus caballos en el podio.
 

@@ -3,6 +3,36 @@
 
 
 --2. El caballo más joven del propietario que ha ganado más carreras entre todos sus caballos ha engordado siete kilos. Registra el cambio en la base de datos.
+--Primero buscamos el dni del propietario con esta select.
+SELECT
+    c.dniPropietario
+FROM
+    caballos c
+    JOIN participaciones pa ON c.codigoCaballo = pa.codigoCaballo
+    JOIN carrerasProfesionales cp ON pa.codigoCarrera = cp.codigoCarrera
+WHERE
+    pa.posicionFinal = 1
+GROUP BY
+    c.dniPropietario
+HAVING
+    COUNT(DISTINCT cp.codigoCarrera) = (SELECT MAX(cantidadCarreras) FROM (SELECT dniPropietario, COUNT(DISTINCT cp.codigoCarrera) AS cantidadCarreras FROM caballos c JOIN participaciones pa ON c.codigoCaballo = pa.codigoCaballo JOIN carrerasProfesionales cp ON pa.codigoCarrera = cp.codigoCarrera WHERE pa.posicionFinal = 1 GROUP BY dniPropietario));
+
+--Segundo, buscamos con el dni que hemos filtrado anteriormente con la otra consulta.
+SELECT
+    c.codigoCaballo,
+    c.fechaNac
+FROM
+    caballos c
+WHERE
+    c.dniPropietario = '21913124n'
+AND ROWNUM = 1
+ORDER BY
+    c.fechaNac;
+
+--Modificación del contenido del peso del caballo :)
+UPDATE caballosCarreras
+SET peso = peso + 7
+WHERE codigoCaballo = '1';
 
 --3. Muestra el importe total de las apuestas de cada uno de los caballos que participaron en la primera carrera de la temporada 2014.
 

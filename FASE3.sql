@@ -70,6 +70,23 @@ ORDER BY
 
 
 --7. Muestra para cada carrera el caballo más joven que ha participado en la misma.
+SELECT
+  cp.codigoCarrera,
+  c.codigoCaballo,
+  c.nombre AS NombreCaballo,
+  c.fechaNac AS FechaNacimiento
+FROM
+  participaciones p
+  JOIN caballos c ON p.codigoCaballo = c.codigoCaballo
+  JOIN carrerasProfesionales cp ON p.codigoCarrera = cp.codigoCarrera
+WHERE
+  c.fechaNac = (
+    SELECT MIN(c1.fechaNac)
+    FROM participaciones p1
+    JOIN caballos c1 ON p1.codigoCaballo = c1.codigoCaballo
+    WHERE p1.codigoCarrera = cp.codigoCarrera
+  );
+
 
 --8. Muestra el último caballo que ganó una carrera de cada uno de los propietarios.
 SELECT

@@ -40,6 +40,22 @@ WHERE codigoCaballo = '1';
 
 
 --5. Muestra los propietarios de caballos que hayan ocupado todas y cada una de las tres posiciones del podio en las diferentes carreras en las que hayan participado.
+--
+SELECT
+    pr.dni,
+    pr.nombre AS NombrePropietario
+FROM
+    propietarios pr
+WHERE
+    (
+        SELECT COUNT(DISTINCT pa.posicionFinal)
+        FROM participaciones pa
+        JOIN caballos c ON pa.codigoCaballo = c.codigoCaballo
+        WHERE c.dniPropietario = pr.dni
+        AND pa.posicionFinal IN (1, 2, 3)
+    ) = 3;
+
+
 
 --6. Muestra el número de abandonos de cada uno de los caballos, incluyendo aquéllos que no hayan sufrido ningún abandono.
 --Muestra los caballos abandonados haciendo referencia a que si no tienen codigo de carrera, están sin dueño.

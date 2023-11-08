@@ -75,6 +75,18 @@ group by codigocaballo;
 
 --4. Muestra los datos del cliente que ha ganado más dinero con las apuestas en los tres últimos meses.
 
+--caballos que han ganado una carrera:
+create or replace view ganadores
+as select * from participaciones where posicionfinal = 1;
+
+--apuestas ganadas:
+select * from apuestas where codigocaballo in (select codigocaballo from ganadores) and
+codigocarrera in (select codigocarrera from ganadores);
+
+
+insert into apuestas
+values ('28441115n',1 ,2 ,300 ,3.10);
+
 
 --5. Muestra los propietarios de caballos que hayan ocupado todas y cada una de las tres posiciones del podio en las diferentes carreras en las que hayan participado.
 SELECT

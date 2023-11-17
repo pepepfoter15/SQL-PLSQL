@@ -24,13 +24,12 @@ begin
     select count (*) INTO v_carrera
     from apuestas
     where codigocarrera = p_codigocarrera;
-
     if v_carrera = 0 then
         raise_application_error(-20112, 'No existe la carrera');
     end if;
 end;
 /
-
+	
 CREATE OR REPLACE PROCEDURE comprobarcaballo (
     p_codigocarrera apuestas.codigocarrera%type,
     p_codigocaballo apuestas.codigocaballo%type) 
@@ -40,7 +39,6 @@ begin
     select count (*) INTO v_caballo
     from apuestas
     where codigocaballo = p_codigocaballo;
-
     if v_caballo = 0 then
         raise_application_error(-20110, 'No se ha encontrado el caballo');
     end if;
@@ -56,9 +54,8 @@ begin
     select count (*) INTO v_caballocarrera
     from participaciones
     where codigocarrera = p_codigocarrera AND codigocaballo = p_codigocaballo;
-    
     if v_caballocarrera = 0 then
-        raise_application_error(-20103, 'No existen caballos en esas carreras');
+        raise_application_error(-20103, 'No participa ese caballo en esa carrera');
     end if;
 end;
 /

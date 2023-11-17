@@ -43,7 +43,7 @@ BEGIN
         END IF;
     END LOOP;
     RETURN v_existedni;
-END;
+END existednicarrera;
 /
 
 --Tras esta función, tendremos que controlar esta expeción que hemos hecho en la función. 
@@ -73,7 +73,7 @@ BEGIN
     indice:=informacionpropietarios.info.last+1;
     informacionpropietarios.info(indice).codigodni:=p_dni;
     informacionpropietarios.info(indice).codigocarrera:=p_carrera;
-END;
+END modifparticipaciones;
 /
 
 --Datos de pruebas

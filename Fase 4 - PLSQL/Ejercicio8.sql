@@ -6,7 +6,7 @@ CREATE OR REPLACE PROCEDURE comprobar_propietario(p_dnicliente apuestas.dniclien
 IS
   v_propietario NUMBER;
 BEGIN
-  SELECT COUNT(*) INTO v_propietario_si_no
+  SELECT COUNT(*) INTO v_propietario
   FROM propietarios
   WHERE dni = p_dnicliente;
 
@@ -68,7 +68,7 @@ DECLARE
   v_control_carrera BOOLEAN;
   v_control_caballo BOOLEAN;
 BEGIN
-  comprobar_apuestas_prop(:NEW.dnicliente,v_control_propietario);
+  comprobar_propietario(:NEW.dnicliente,v_control_propietario);
   IF v_control_propietario = TRUE THEN
     comprobar_apuestas_prop(:NEW.codigocarrera,:NEW.dnicliente,v_control_carrera);
     IF v_control_carrera = TRUE THEN
@@ -81,5 +81,34 @@ BEGIN
 END;
 /
 
-
 --Pruebas de funcionamiento
+--Primero, añado un cliente que sea propietario que pueda apostar y sea a su vez cliente y propietario.
+INSERT INTO clientes VALUES ('53942599N', 'Mario', 'Zayas', 'Garcia', 'Calle Real, 12', 'Sevilla', 'Sevilla','678123467');
+
+--Insertamos una apuesta de un cliente normal que no sea propietario y comprobamos que será necesario (consulta) tener presente cuáles son los caballos que pertenecen al propietario anteriormente añadido como cliente.
+INSERT INTO apuestas VALUES ('28841115N',1 ,2 ,300 ,3.10);
+
+--Para las comprobaciones que vienen a continuación será necesario tener presente cuáles son los caballos que pertenecen al propietario anteriormente añadido como cliente.
+SELECT *
+FROM caballos
+WHERE dnipropietario = '53942599N';
+
+--Inserto una apuesta de un propietario en una carrera en la que no corren caballos suyos. Ejemplo carrera 1.
+SELECT codigocaballo
+FROM participaciones
+WHERE codigocarrera = 1;
+
+--Como no hay ningún caballo suyo, le dejará apostar tanto en uno suyo como en uno ajeno.
+INSERT INTO apuestas VALUES ('21913124n',1 ,1 ,300 ,3.10);
+INSERT INTO apuestas VALUES ('21913124n',1 ,10 ,300 ,3.10);
+
+--Ahora inserto una apuesta de un propietario en una carrera en la corre algún caballo suyo. Ejemplo carrera 3.
+SELECT codigocaballo
+FROM participaciones
+WHERE codigocarrera = 3;
+
+--Comprobación del trigger
+INSERT INTO apuestas values ('21913124n',3 ,9 ,300 ,3.10);
+
+INSERT INTO apuestas values ('21913124n',3 ,10 ,300 ,3.10);
+INSERT INTO apuestas values ('21913124n',3 ,10 ,300 ,3.10);

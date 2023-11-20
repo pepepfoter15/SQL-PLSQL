@@ -1,5 +1,5 @@
 --9. Muestra los propietarios que nunca han tenido uno de sus caballos en el podio.
---HECHO POR MARIO Y CON AYUDA PEPE.
+--HECHO POR MARIO.
 SELECT
     p.dni,
     p.nombre AS NombrePropietario

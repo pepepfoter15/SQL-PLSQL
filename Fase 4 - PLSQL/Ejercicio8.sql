@@ -1,5 +1,5 @@
 --8.- Realiza los módulos de programación necesarios para evitar que un propietario apueste por un caballo que no sea de su propiedad si en esa misma carrera corre algún caballo suyo
---AUTOR: PEPE
+--AUTOR: MARIO Y GONZALO.
 
 --En este ejercicio, primero crearemos un procedimeinto para comprobar que el cliente es propietario y buscandolo en la tabla de propietarios.
 CREATE OR REPLACE PROCEDURE comprobar_propietario(p_dnicliente apuestas.dnicliente%TYPE, p_control_propietario OUT BOOLEAN)

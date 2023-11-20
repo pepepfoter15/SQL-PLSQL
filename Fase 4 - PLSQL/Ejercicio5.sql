@@ -1,5 +1,5 @@
 --5. Añade una columna a la tabla Propietarios llamada ImporteTotalPremios. Rellénala con un procedimiento o una sentencia SQL considerando los premios que han conseguido los caballos de cada uno de ellos por sus victorias en las carreras. Haz un trigger que la mantenga actualizada cada vez que se realice cualquier cambio en la tabla Participaciones que afecte a este total. 
---AUTOR:
+--AUTOR: GONZALO
 CREATE OR REPLACE PROCEDURE importe_total IS
     CURSOR c_propietarios IS
         SELECT nombre

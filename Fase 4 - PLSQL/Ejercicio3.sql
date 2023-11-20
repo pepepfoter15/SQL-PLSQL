@@ -1,5 +1,5 @@
 --3. Realiza un trigger que controle que solo participan en una carrera caballos en el rango de edades permitido. Si es necesario, cambia el modelo de datos. 
---AUTOR:
+--AUTOR: GONZALO Y MARIO.
 CREATE OR REPLACE PROCEDURE obtener_fechanac_caballo(p_codigocaballo participaciones.codigocaballo%TYPE, p_fechanac OUT DATE)
 IS
 BEGIN

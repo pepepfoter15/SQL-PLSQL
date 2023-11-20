@@ -1,5 +1,5 @@
 --6.- Realiza los módulos de programación necesarios para evitar que un mismo propietario envíe dos caballos a una misma carrera.
---AUTOR: PEPE
+--AUTOR: PEPE Y JOSEMA.
 
 --Ya este es un problema alberga un problema de compilación entre tablas mutantes, tendremos que crear un paquete.
 --Este tendrá tendrá los valores referentes al dni de la tabla caballos y el codigo de carrera de la tabla participantes.

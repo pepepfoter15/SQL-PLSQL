@@ -1,5 +1,5 @@
-4. Añade una columna email en la tabla Clientes y rellénala con datos consistentes. Realiza un trigger que cuando se actualice la tabla Participaciones para introducir los resultados de la carrera envíe un correo electrónico a todos los apostantes del caballo ganador informándoles del importe apostado y el beneficio obtenido. 
-AUTOR: GONZALO Y MARIO 
+--4. Añade una columna email en la tabla Clientes y rellénala con datos consistentes. Realiza un trigger que cuando se actualice la tabla Participaciones para introducir los resultados de la carrera envíe un correo electrónico a todos los apostantes del caballo ganador informándoles del importe apostado y el beneficio obtenido. 
+--AUTOR: GONZALO Y MARIO 
   
 ALTER TABLE clientes ADD email varchar2(50);
 

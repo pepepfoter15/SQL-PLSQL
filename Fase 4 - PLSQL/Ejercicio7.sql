@@ -1,6 +1,6 @@
 --7 Realiza los módulos de programación necesarios para evitar que un mismo jockey corra más de tres carreras en el
 --mismo día
-
+--AUTOR: PEPE Y JOSEMA
 create or replace trigger tres_carreras_jockey
     before insert or update on  participaciones
     for each row

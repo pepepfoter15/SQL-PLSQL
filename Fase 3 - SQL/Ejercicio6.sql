@@ -1,6 +1,6 @@
 --6. Muestra el número de abandonos de cada uno de los caballos, incluyendo aquéllos que no hayan sufrido ningún abandono.
 --Muestra los caballos abandonados haciendo referencia a que si no tienen codigo de carrera, están sin dueño.
---HECHO POR MARIO Y CON AYUDA DE PEPE.
+--HECHO POR MARIO.
 SELECT
     c.codigoCaballo,
     c.nombre AS NombreCaballo,

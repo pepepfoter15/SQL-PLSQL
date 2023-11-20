@@ -1,5 +1,5 @@
 --3. Muestra el importe total de las apuestas de cada uno de los caballos que participaron en la primera carrera de la temporada 2014.
---HECHO POR JOSEMA.
+--HECHO POR JOSEMA y MARIO
 --(Ya que no hay datos en 2014 he usado los datos que existian y he usado el año 2017 )
 --Primera carrera
 create or replace view primcarrera
